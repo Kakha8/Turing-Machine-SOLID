@@ -1,12 +1,12 @@
 public class TuringMachine {
 
-    private char[] tape;
+    private Tape tape;
     private int headPosition;
     private String state;
     private String[][] rules;
     private int ruleCount;
 
-    public TuringMachine(char[] tape, int headPosition, String[][] rules, int ruleCount) {
+    public TuringMachine(Tape tape, int headPosition, String[][] rules, int ruleCount) {
 
         this.tape = tape;
         this.headPosition = headPosition;
@@ -22,7 +22,7 @@ public class TuringMachine {
         while (steps < maxSteps) {
             steps++;
 
-            char currentSymbol = tape[headPosition];
+            char currentSymbol = tape.read(headPosition);
             boolean ruleApplied = false;
 
             for (int i = 0; i < ruleCount; i++) {
@@ -30,7 +30,7 @@ public class TuringMachine {
                         rules[i][1].charAt(0) == currentSymbol) {
 
                     // apply rule
-                    tape[headPosition] = rules[i][2].charAt(0);
+                    tape.write(headPosition, rules[i][2].charAt(0));
 
                     if (rules[i][3].charAt(0) == 'L') {
                         headPosition--;
@@ -40,7 +40,7 @@ public class TuringMachine {
 
                     state = rules[i][4];
 
-                    printTape();
+                    tape.print();
                     ruleApplied = true;
                     break;  // stop after one rule
                 }
@@ -52,21 +52,15 @@ public class TuringMachine {
                 break;
             }
 
-            if (headPosition < 0 || headPosition >= tape.length) {
+            if (headPosition < 0 || headPosition >= tape.length()) {
                 System.out.println("\nHALT (head moved off tape)");
                 break;
             }
         }
 
         if (steps >= maxSteps) {
-            System.out.println("\nHALT (max steps reached, possible infinite loop)");
+            System.out.println("\nHALT (max steps reached)");
         }
     }
 
-    private void printTape() {
-        System.out.println();
-        for (char c : tape) {
-            System.out.print(c);
-        }
-    }
 }

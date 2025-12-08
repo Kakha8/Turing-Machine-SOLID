@@ -14,9 +14,8 @@ public class Main {
 
         // read tape
         readLine = br.readLine();
-        char[] tape = new char[readLine.length()];;
-        //String state = "0";
-        for( int i=0; i < readLine.length(); i++) tape[i] = readLine.charAt(i);
+        char[] tapeArray = readLine.toCharArray();
+        Tape tape = new Tape(tapeArray);
 
         //read rules
         int ruleCount = 0;
