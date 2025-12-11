@@ -1,17 +1,17 @@
+import java.util.List;
+
 public class TuringMachine {
 
     private Tape tape;
     private int headPosition;
     private String state;
-    private String[][] rules;
-    private int ruleCount;
+    private List<Rule> rules;
 
-    public TuringMachine(Tape tape, int headPosition, String[][] rules, int ruleCount) {
+    public TuringMachine(Tape tape, int headPosition, List<Rule> rules) {
 
         this.tape = tape;
         this.headPosition = headPosition;
         this.rules = rules;
-        this.ruleCount = ruleCount;
         this.state = "0"; // initial state
     }
 
@@ -25,24 +25,25 @@ public class TuringMachine {
             char currentSymbol = tape.read(headPosition);
             boolean ruleApplied = false;
 
-            for (int i = 0; i < ruleCount; i++) {
-                if (rules[i][0].equals(state) &&
-                        rules[i][1].charAt(0) == currentSymbol) {
+            for (Rule r : rules) {
+
+                if (r.getCurrentState().equals(state) &&
+                        r.getReadSymbol() == currentSymbol) {
 
                     // apply rule
-                    tape.write(headPosition, rules[i][2].charAt(0));
+                    tape.write(headPosition, r.getWriteSymbol());
 
-                    if (rules[i][3].charAt(0) == 'L') {
+                    if (r.getDirection() == 'L') {
                         headPosition--;
                     } else {
                         headPosition++;
                     }
 
-                    state = rules[i][4];
+                    state = r.getNextState();
 
                     tape.print();
                     ruleApplied = true;
-                    break;  // stop after one rule
+                    break;
                 }
             }
 
