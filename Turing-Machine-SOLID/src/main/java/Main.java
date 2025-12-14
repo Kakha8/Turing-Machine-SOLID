@@ -10,7 +10,7 @@ public class Main {
         String path = "running_ones.tmprog.txt";  // you can still hardcode this
         System.out.println("Loading program from: " + path);
 
-        ProgramLoader loader = new TextProgramLoader();
+        ProgramLoader loader = ProgramLoaderFactory.create(path);
         TuringProgram program = loader.load(path);
 
         // Building TM from program instance
