@@ -5,13 +5,12 @@ public class TuringMachine {
     private Tape tape;
     private int headPosition;
     private String state;
-    private List<Rule> rules;
-
-    public TuringMachine(Tape tape, int headPosition, List<Rule> rules) {
+    private RuleSet ruleSet;
+    public TuringMachine(Tape tape, int headPosition, RuleSet ruleSet) {
 
         this.tape = tape;
         this.headPosition = headPosition;
-        this.rules = rules;
+        this.ruleSet = ruleSet;
         this.state = "0"; // initial state
     }
 
@@ -23,35 +22,28 @@ public class TuringMachine {
             steps++;
 
             char currentSymbol = tape.read(headPosition);
-            boolean ruleApplied = false;
 
-            for (Rule r : rules) {
+            // finding the rule
+            Rule rule = ruleSet.findRule(state, currentSymbol);
 
-                if (r.getCurrentState().equals(state) &&
-                        r.getReadSymbol() == currentSymbol) {
-
-                    // apply rule
-                    tape.write(headPosition, r.getWriteSymbol());
-
-                    if (r.getDirection() == 'L') {
-                        headPosition--;
-                    } else {
-                        headPosition++;
-                    }
-
-                    state = r.getNextState();
-
-                    tape.print();
-                    ruleApplied = true;
-                    break;
-                }
-            }
-
-            if (!ruleApplied) {
+            if (rule == null) {
                 System.out.println("\nHALT (no rule matched for state " + state +
                         " and symbol '" + currentSymbol + "')");
                 break;
             }
+
+            // applying the rule
+            tape.write(headPosition, rule.getWriteSymbol());
+
+            if (rule.getDirection() == 'L') {
+                headPosition--;
+            } else {
+                headPosition++;
+            }
+
+            state = rule.getNextState();
+
+            tape.print();
 
             if (headPosition < 0 || headPosition >= tape.length()) {
                 System.out.println("\nHALT (head moved off tape)");

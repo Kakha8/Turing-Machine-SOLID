@@ -2,9 +2,9 @@ public class TuringProgram {
 
     private final Tape tape;
     private final int headPosition;
-    private final Rule ruleSet;
+    private final RuleSet ruleSet;
 
-    public TuringProgram(Tape tape, int headPosition, Rule ruleSet) {
+    public TuringProgram(Tape tape, int headPosition, RuleSet ruleSet) {
         this.tape = tape;
         this.headPosition = headPosition;
         this.ruleSet = ruleSet;
@@ -16,7 +16,7 @@ public class TuringProgram {
     public int getHeadPosition() {
         return headPosition;
     }
-    public Rule getRuleSet() {
+    public RuleSet getRuleSet() {
         return ruleSet;
     }
 

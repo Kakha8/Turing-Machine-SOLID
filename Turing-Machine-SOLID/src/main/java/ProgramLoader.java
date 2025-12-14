@@ -1,5 +1,5 @@
 import java.io.IOException;
 
 public interface ProgramLoader {
-    TuringProgram load(String path);
+    TuringProgram load(String path) throws IOException;
 }
