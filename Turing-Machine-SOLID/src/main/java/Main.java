@@ -7,7 +7,8 @@ public class Main {
 
     public static void main(String[] args) throws NumberFormatException, IOException {
 
-        String path = "running_ones.tmprog.txt";  // you can still hardcode this
+        //String path = "running_ones.tmprog.txt";
+        String path = "running_ones.tmprog.json";
         System.out.println("Loading program from: " + path);
 
         ProgramLoader loader = ProgramLoaderFactory.create(path);
