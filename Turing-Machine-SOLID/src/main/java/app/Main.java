@@ -1,14 +1,18 @@
+package app;
+
+import core.TuringMachine;
+import core.TuringProgram;
+import io.ProgramLoader;
+import io.ProgramLoaderFactory;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) throws NumberFormatException, IOException {
 
-        //String path = "running_ones.tmprog.txt";
-        String path = "running_ones.tmprog.json";
+        //String path = "src/main/resources/running_ones.tmprog.txt";
+        String path = "src/main/resources/running_ones.tmprog.json";
         System.out.println("Loading program from: " + path);
 
         ProgramLoader loader = ProgramLoaderFactory.create(path);

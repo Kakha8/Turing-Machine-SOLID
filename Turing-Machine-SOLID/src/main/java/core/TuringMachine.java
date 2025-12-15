@@ -1,4 +1,4 @@
-import java.util.List;
+package core;
 
 public class TuringMachine {
 

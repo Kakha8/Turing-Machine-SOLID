@@ -1,3 +1,5 @@
+package core;
+
 public class Rule {
     private final String currentState;
     private final char readSymbol;

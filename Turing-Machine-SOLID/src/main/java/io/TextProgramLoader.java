@@ -1,3 +1,10 @@
+package io;
+
+import core.Rule;
+import core.RuleSet;
+import core.Tape;
+import core.TuringProgram;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

@@ -1,5 +1,11 @@
+package io;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import core.Rule;
+import core.RuleSet;
+import core.Tape;
+import core.TuringProgram;
 
 import java.io.FileReader;
 import java.io.IOException;
