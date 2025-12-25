@@ -12,11 +12,21 @@ Pluggable loaders via ProgramLoader + ProgramLoaderFactory
 Project Layout:
 
 src/
- └─ main/
-     ├─ java/com/example/tm/
-     │   ├─ app/Main.java
-     │   ├─ core/ (TuringMachine, Tape, Rule, RuleSet, TuringProgram)
-     │   └─ io/   (ProgramLoader, TextProgramLoader, JsonProgramLoader, ProgramLoaderFactory)
-     └─ resources/
-         ├─ running_ones.tmprog.txt
-         └─ running_ones.tmprog.json
+└─ main/
+├─ java/com/example/tm/
+│ ├─ app/
+│ │ └─ Main.java
+│ ├─ core/
+│ │ ├─ TuringMachine.java
+│ │ ├─ Tape.java
+│ │ ├─ Rule.java
+│ │ ├─ RuleSet.java
+│ │ └─ TuringProgram.java
+│ └─ io/
+│ ├─ ProgramLoader.java
+│ ├─ ProgramLoaderFactory.java
+│ ├─ TextProgramLoader.java
+│ └─ JsonProgramLoader.java
+└─ resources/
+├─ running_ones.tmprog.txt
+└─ running_ones.tmprog.json
